@@ -121,5 +121,3 @@ subset(data, Height > 75 & (Seed.herbivore | Root.herbivore))
 data$small.plant <- data$Height < 50
 
 data$small.plant <- NULL
-
-
