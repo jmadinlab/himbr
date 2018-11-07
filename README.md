@@ -85,7 +85,3 @@ Which should print:
 
     [1] TRUE
 
-
-- data set and data manipulation
-- assumptions and transformations
-- 
