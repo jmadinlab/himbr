@@ -71,7 +71,7 @@ In more complicated projects, I would generally have a folder called `R` that co
 
 Let's download a dataset:
 
-- [https://raw.githubusercontent.com/himbr/intro/master/data/seed_root_herbivores.csv](https://raw.githubusercontent.com/himbr/intro/master/data/seed_root_herbivores.csv)
+- [https://raw.githubusercontent.com/jmadinlab/himbr/master/data/seed_root_herbivores.csv](https://raw.githubusercontent.com/jmadinlab/himbr/master/data/seed_root_herbivores.csv)
 
 (You may need to right-click the above links and "Save linked file" or equivalent)
 
