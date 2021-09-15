@@ -1,0 +1,904 @@
+head(corals)
+corals <- tikus$abun # cover#
+data <- tikus$x#
+#
+head(corals)
+head(data)
+data
+head(corals)
+data
+rowSums(corals)
+head(corals)
+rowSums(corals)/3000
+rowSums(corals)/3000*100
+head(corals)
+pres_abs <- ifelse(data < 1, 0, 1)#
+head(pres_abs)
+pres_abs <- ifelse(corals < 1, 0, 1)#
+head(pres_abs)
+data$rich <- rowSums(pres_abs)
+data$rich
+head(data)
+corals <- tikus$abun # cover#
+data <- tikus$x#
+#
+head(corals)#
+data#
+#
+data$cover <- rowSums(corals)/3000*100#
+#
+pres_abs <- ifelse(corals < 1, 0, 1)#
+head(pres_abs)#
+#
+data$rich <- rowSums(pres_abs)#
+#
+head(data)
+library("ggplot2")
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_point()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_point()+#
+geom_smooth()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_point()+#
+geom_smooth(method="lm")
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()
+ggplot(data, aes(time, cover))+#
+geom_boxplot()
+head(data)
+head(data)#
+ggplot(data, aes(time, richness))+#
+geom_boxplot()
+head(data)#
+ggplot(data, aes(time, rich))+#
+geom_boxplot()
+ggplot(data, aes(time, rich))+#
+stat_summary(geom="bar", fun="mean")
+ggplot(data, aes(time, rich))+#
+stat_summary(geom="bar", fun="mean")+#
+stat_summary(geom="errorbar", fun="mean_se")
+ggplot(data, aes(time, rich))+#
+stat_summary(geom="bar", fun="mean")+#
+stat_summary(geom="errorbar", fun.data=mean_se)
+ggplot(data, aes(time, rich))+#
+stat_summary(geom="bar", fun="mean")+#
+stat_summary(geom="errorbar", fun.data=mean_se, width=0.1)
+ggplot(data, aes(time, rich))+#
+geom_bar()
+avs <- aggregate(cover~year, data=data, fun=mean)
+avs <- aggregate(cover~time, data=data, fun=mean)
+avs <- aggregate(cover~time, data=data, FUN=mean)
+avs
+ggplot(avs, aes(time, cover))+#
+geom_bar(stat="identity")
+aggregate(cover~time, data=data, FUN=sd)
+aggregate(cover~time, data=data, FUN=se)
+se <- function(x){sd(x)/sqrt(length(x))}#
+#
+aggregate(cover~time, data=data, FUN=se)
+avs$se <- aggregate(cover~time, data=data, FUN=se)$cover
+avs
+?geom_segment
+ggplot(avs, aes(time, cover))+#
+geom_bar(stat="identity")+#
+geom_segment(aes(x=time, xend=time, y=cover-se, yend=cover+se))
+ggplot(data, aes(time, rich))+#
+stat_summary(geom="bar", fun="mean")+#
+stat_summary(geom="errorbar", fun.data=mean_se, width=0.1)
+?geom_errorbar
+ggplot(avs, aes(time, cover))+#
+geom_bar(stat="identity")+#
+geom_segment(aes(x=time, xend=time, y=cover-se, yend=cover+se))#
+geom_errorbar(aes(x=time,  ymin=cover-se, ymax=cover+se), col="red")
+ggplot(avs, aes(time, cover))+#
+geom_bar(stat="identity")+#
+geom_segment(aes(x=time, xend=time, y=cover-se, yend=cover+se))+#
+geom_errorbar(aes(x=time,  ymin=cover-se, ymax=cover+se), col="red")
+ggplot(data=avs, aes(time, cover))+geom_line()
+ggplot(data=avs, aes(time, cover))+geom_line(aes(group=1))
+ggplot(data=avs, aes(as.numeric(time), cover))+#
+geom_line()
+ggplot(data=avs, aes(as.numeric(as.character(time),) cover))+#
+geom_line()
+ggplot(data=avs, aes(as.numeric(as.character(time)), cover))+#
+geom_line()
+str(data)
+head(data)
+ggplot(data=avs, aes(time, cover))+#
+geom_line(aes(group=rep))
+ggplot(data=data, aes(time, cover))+#
+geom_line(aes(group=rep))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_bw()
+install.packages("ggthemes")
+library("ggthemes")
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_excel()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_wsj()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme(axis.text=element_text(size=5))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme(axis.text=element_text(size=5), plot.background=element_rect(colour="black"))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme(axis.text=element_text(size=5), plot.background=element_rect(fill="black"))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme(axis.text=element_text(size=5), plot.background=element_rect(fill="black"), panel.background=element_rect(fill="black"))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.text=element_text(size=5), plot.background=element_rect(fill="black"), panel.background=element_rect(fill="black"))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.text=element_text(size=5, colour="white"), plot.background=element_rect(fill="black"), panel.background=element_rect(fill="black"))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.title=element_text(size=5, colour="white"), #
+axis.text=element_text(size=5, colour="white"), plot.background=element_rect(fill="black"), panel.background=element_rect(fill="black"))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.title=element_text(size=5, colour="white"), #
+axis.text=element_text(size=5, colour="white"), plot.background=element_rect(fill="black"), panel.background=element_blank())
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.title=element_text(size=5, colour="white"), #
+axis.text=element_text(size=5, colour="white"), plot.background=element_blank(), panel.background=element_blank())
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.title=element_text(size=5, colour="white"), #
+axis.text=element_text(size=5, colour="white"), plot.background=element_rect(fill="black"), panel.background=element_blank())
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=rich))+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=rich))+#
+scale_colour_distiller(palette="Spectral")+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=time))+#
+scale_colour_distiller(palette="Spectral")+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=time))+#
+theme_classic()
+display.brewer.pal(n = 6, name = 'Dark2')#
+brewer.pal(n = 6, name = 'Dark2')
+library("RColorBrewer")#
+#
+display.brewer.pal(n = 6, name = 'Dark2')#
+brewer.pal(n = 6, name = 'Dark2')
+pal <- brewer.pal(n = 6, name = 'Dark2')
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=time))+#
+scale_colour_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time))+#
+scale_colour_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21)+#
+scale_colour_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.1)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+library("png")#
+library("grid")#
+#
+img<-readPNG("data/images/image.png")#
+img<-rasterGrob(img, interpolate=TRUE)
+img
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+plot
+plot+geom_point(col="red")
+plot+#
+annotation_custom(ggplotGrob(plot), xmin=40, xmax=50, ymin=0, ymax=10)+
+plot+#
+annotation_custom(ggplotGrob(plot), xmin=40, xmax=50, ymin=0, ymax=10)
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8))#
+plot
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(1, "mm"))#
+plot
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"))#
+plot
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(10, "mm"))#
+plot
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"))#
+plot
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"), legend.title=element_text(size=7))#
+plot
+inplot <- plot+guides(fill="none", axis.text=element_text(size=3), axis.title=element_text(size=3))#
+#
+plot+#
+annotation_custom(ggplotGrob(inplot), xmin=40, xmax=50, ymin=0, ymax=10)
+inplot <- plot+#
+guides(fill="none")+#
+theme(axis.text=element_text(size=3), axis.title=element_text(size=3))#
+#
+plot+#
+annotation_custom(ggplotGrob(inplot), xmin=40, xmax=50, ymin=0, ymax=10)
+boxes <- ggplot(data, aes(time, rich))+#
+geom_boxplot()#
+plot_grid(plot, boxes)
+library("cowplot")#
+#
+boxes <- ggplot(data, aes(time, rich))+#
+geom_boxplot()#
+plot_grid(plot, boxes)
+plot_grid(plot, boxes, labels=c("A","B"))
+plot_grid(plot, boxes, labels=c("A","B"), rel_widths=c(1, 0.8))
+plot_grid(plot, boxes, labels=c("A","B"), rel_widths=c(1, 0.8), ncol=1)
+plot_grid(plot, boxes, labels=c("A","B"), rel_heights=c(1, 0.8), ncol=1)
+plot_grid(plot, boxes, labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1)
+plot_grid(plot, boxes, labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1, align="h")
+plot_grid(plot, boxes, labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1, align="h", axis="lr")
+plot_grid(plot, boxes, labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1, align="h", axis="bt")
+?plot_grid
+plot_grid(plot+ylim(0,35), boxes+ylim(0,35), labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1, align="h", axis="bt")
+fig.1 <- plot_grid(plot+ylim(0,35), boxes+ylim(0,35), labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1, align="h", axis="bt")#
+fig.1
+ggsave("figs/fig.1.png", fig.1, width=15, height=9.5, units="cm", dpi = 300)
+ggsave("figs/fig.1.png", fig.1, width=10, height=7, units="cm", dpi = 300)
+ggsave("figs/fig.1.png", fig.1, width=13, height=8, units="cm", dpi = 300)
+ggplot(data=data, aes(rich, cover))+#
+geom_point()
+ggplot(data=data, aes(rich, cover))+#
+geom_point()+#
+facet_wrap(~time)
+ggplot(data=data, aes(rich, cover))+#
+geom_point()+#
+facet_grid(rep~time)
+ggplot(data=data, aes(rich, cover))+#
+geom_point()+#
+facet_wrap(~time)
+ggplot(data=data, aes(rich, cover))+#
+geom_point()+#
+facet_wrap(~time, scales="free")
+################################################
+# Mapping in ggplot#
+################################################
+#
+library("maptools")#
+library("raster")#
+library("rgdal")#
+#
+# source of this code: http://www.rpubs.com/spoonerf/countrymapggplot2#
+#
+usa<-getData("GADM", country="USA", level=1)  # choose country ISO code#
+usa_UTM<-spTransform(usa, CRS("+init=EPSG:32404"))  # set projection#
+# UTM square from: http://www.dmap.co.uk/utmworld.htm (longitude square + N/S)#
+# search this UTM code to get ESPG no at https://spatialreference.org #
+#
+hi<-usa_UTM[usa_UTM@data$NAME_1 == "Hawaii",] #
+hi = spTransform(hi, "+init=epsg:4326")#
+hi_df<-fortify(hi)  #
+mid<-c(21.5, -158.0) # midpoint#
+a<-0.35 # area#
+ggplot() + #
+geom_polygon(data=hi_df, aes(long,lat, group=group), fill="whitesmoke", col="black", size=0.1)+#
+ xlim(min(hi_df$long),max(hi_df$long))+#
+ ylim(min(hi_df$lat),max(hi_df$lat))+#
+coord_cartesian(c(mid[2]-a, mid[2]+a) ,c(mid[1]-a, mid[1]+a))+#
+theme_void()
+head(corals)
+library("reshape2")
+head(melt(corals))
+head(cbind(data, corals))
+new <- cbind(data[,c("time")], corals)
+head(melt(corals))
+head(melt(new))
+head(melt(new, id.var="time"))
+head(melt(new, id.var=time))
+new <- cbind(time=data[,c("time")], corals)
+head(melt(new, id.var="time"))
+long <- melt(new, id.var="time")
+unique(long$species)
+long <- melt(new, id.var="time", variable.name="species")
+unique(long$species)
+sub(" .*", "", long$species)
+long$genera <- sub(" .*", "", long$species)
+head(long)
+long$genus <- sub(" .*", "", long$species)#
+#
+head(long)
+long <- melt(new, id.var="time", variable.name="species")#
+#
+unique(long$species)#
+#
+long$genus <- sub(" .*", "", long$species)#
+#
+head(long)
+genus <- aggregate(value~time+genus, data=long, FUN=sum)
+head(genus)
+ggplot(genus, aes(x=value, y=genus))+geom_bar(stat="identity")
+ggplot(genus, aes(x=value, y=genus))+geom_bar(stat="identity")+facet_wrap(~time)
+ggplot(genus, aes(x=value, y=genus, fill=time))+geom_bar(stat="identity")
+ggplot(genus, aes(x=value, y=genus, fill=time))+geom_bar(stat="identity")+facet_wrap(~time)
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+ggplot(genus, aes(x=value, y=reorder(genus, log(value)), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+ggplot(genus, aes(x=log(value), y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+ggplot(genus, aes(x=log10(value), y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)+#
+scale_x_log10()
+head(genus)
+dcast(time~genus, genus)
+dcast(genus, time~genus)
+acast(genus, time~genus)
+library("vegan")
+mds<-metaMDS(wide, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+#stressplot(mds)
+wide <- acast(genus, time~genus)#
+#
+library("vegan")#
+#
+mds<-metaMDS(wide, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+#stressplot(mds)
+stressplot(mds)
+mds<-metaMDS(corals, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+stressplot(mds)
+scores(mds)
+points<-cbind(data.frame(scores(mds)), data)#
+vectors<-data.frame(mds$species)
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2))
+cbind(data.frame(scores(mds)), data)
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=time, size=cover))
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_fill_distiller(palette="Spectral")
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")
+vectors
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=u, yend=MDS2))
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text(data=vectors, aes(MDS1, MDS2, label=rownames(vectors)))
+mds<-metaMDS(genus, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+stressplot(mds)
+mds<-metaMDS(wide, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+stressplot(mds)
+points<-cbind(data.frame(scores(mds)), data)#
+vectors<-data.frame(mds$species)#
+#
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text(data=vectors, aes(MDS1, MDS2, label=rownames(vectors)))
+mds<-metaMDS(corals, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+stressplot(mds)#
+#
+points<-cbind(data.frame(scores(mds)), data)#
+vectors<-data.frame(mds$species)#
+#
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text(data=vectors, aes(MDS1, MDS2, label=rownames(vectors)))
+library("ggrepel")
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1, MDS2, label=rownames(vectors)))
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1, MDS2, label=rownames(vectors)), size=1.5)
+ggplot()+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)
+ggplot()+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))
+ggplot()+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+points
+ggplot()+#
+scale_colour_distiller(palette="Spectral")+#
+#geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+#geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+################################################
+# Data - bleaching in Indonesia (10x30m transects, 6 years )#
+################################################
+# Warwick, R.M., Clarke, K.R. & Suharsono (1990): A statistical analysis of coral community responses to the 1982-1983 El Nino in the Thousand Islands, Indonesia. - Coral Reefs, 8: 171-179.#
+#
+library("mvabund")#
+data(tikus)#
+summary(tikus)#
+#
+corals <- tikus$abun # species cover#
+data <- tikus$x#
+#
+head(corals)#
+data#
+#
+data$cover <- rowSums(corals)/3000*100  # total cover#
+#
+pres_abs <- ifelse(corals < 1, 0, 1)#
+head(pres_abs)#
+#
+data$rich <- rowSums(pres_abs) # richness#
+#
+head(data)
+################################################
+# Basic plots#
+################################################
+#
+library("ggplot2")#
+#
+# x-y plot#
+#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()#
+#
+# boxplot#
+head(data)#
+ggplot(data, aes(time, rich))+#
+geom_boxplot()#
+#
+# barplot#
+ggplot(data, aes(time, rich))+#
+stat_summary(geom="bar", fun="mean")+#
+stat_summary(geom="errorbar", fun.data=mean_se, width=0.1)#
+#
+avs <- aggregate(cover~time, data=data, FUN=mean)#
+#
+se <- function(x){sd(x)/sqrt(length(x))}#
+#
+avs$se <- aggregate(cover~time, data=data, FUN=se)$cover#
+#
+ggplot(avs, aes(time, cover))+#
+geom_bar(stat="identity")+#
+geom_segment(aes(x=time, xend=time, y=cover-se, yend=cover+se))+#
+geom_errorbar(aes(x=time,  ymin=cover-se, ymax=cover+se), col="red")#
+#
+# line plot#
+str(data)#
+#
+ggplot(data=data, aes(time, cover))+#
+geom_line(aes(group=rep))#
+#
+ggplot(data=avs, aes(as.numeric(as.character(time)), cover))+#
+geom_line()
+# default themes - https://ggplot2.tidyverse.org/reference/ggtheme.html#
+#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_bw()
+library("ggthemes")#
+#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+theme_wsj()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(col="white")+#
+theme(axis.title=element_text(size=5, colour="white"), #
+axis.text=element_text(size=5, colour="white"), plot.background=element_rect(fill="black"), panel.background=element_blank())
+# continous colour#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=rich))+#
+scale_colour_distiller(palette="Spectral")+#
+theme_classic()
+# dicrete colour#
+#
+library("RColorBrewer")#
+#
+display.brewer.pal(n = 6, name = 'Dark2')#
+pal <- brewer.pal(n = 6, name = 'Dark2')#
+#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(colour=time))+#
+scale_colour_manual(values=pal)+#
+theme_classic()
+library("RColorBrewer")#
+#
+display.brewer.pal(n = 6, name = 'Dark2')#
+pal <- brewer.pal(n = 6, name = 'Dark2')#
+#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+library("png")#
+library("grid")#
+#
+img<-readPNG("data/images/image.png")#
+img<-rasterGrob(img, interpolate=TRUE)#
+#
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"), legend.title=element_text(size=7))#
+plot
+# edit legends#
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"), legend.title=element_text(size=7))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"), legend.title=element_text(size=7))
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+scale_fill_manual(values=pal)+#
+theme_classic()
+library("png")#
+library("grid")#
+#
+img<-readPNG("data/images/image.png")#
+img<-rasterGrob(img, interpolate=TRUE)#
+#
+plot <- ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point(aes(fill=time), shape=21, stroke=0.2)+#
+annotation_custom(img, xmin=40, xmax=50, ymin=0, ymax=10)+#
+scale_fill_manual(values=pal)+#
+theme_classic()+#
+theme(legend.position=c(0.1, 0.8), legend.key.size=unit(2, "mm"), legend.title=element_text(size=7))#
+plot
+inplot <- plot+#
+guides(fill="none")+#
+theme(axis.text=element_text(size=3), axis.title=element_text(size=3))
+inplot <- plot+#
+guides(fill="none")+#
+theme(axis.text=element_text(size=3), axis.title=element_text(size=3))#
+#
+plot+#
+annotation_custom(ggplotGrob(inplot), xmin=40, xmax=50, ymin=0, ymax=10)
+library("cowplot")#
+#
+boxes <- ggplot(data, aes(time, rich))+#
+geom_boxplot()#
+fig.1 <- plot_grid(plot+ylim(0,35), boxes+ylim(0,35), labels=c("A","B"), rel_widths=c(1, 0.8), nrow=1, align="h", axis="bt")#
+fig.1
+ggplot(data=data, aes(rich, cover))+#
+geom_point()+#
+facet_wrap(~time)
+library("reshape2")#
+#
+# which species are most abundant?#
+#
+head(corals)#
+#
+new <- cbind(time=data[,"time", "rep")], corals)#
+#
+long <- melt(new, id.var="time", variable.name="species")#
+#
+unique(long$species)#
+#
+long$genus <- sub(" .*", "", long$species)#
+#
+head(long)#
+#
+genus <- aggregate(value~time+genus, data=long, FUN=sum)#
+#
+head(genus)#
+#
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)+#
+scale_x_log10()
+library("reshape2")#
+#
+# which species are most abundant?#
+#
+head(corals)
+new <- cbind(time=data[,"time", "rep")], corals)
+new <- cbind(time=data[,"time")], corals)#
+#
+long <- melt(new, id.var="time", variable.name="species")
+new <- cbind(time=data[,"time"], corals)#
+#
+long <- melt(new, id.var="time", variable.name="species")
+unique(long$species)#
+#
+long$genus <- sub(" .*", "", long$species)#
+#
+head(long)#
+#
+genus <- aggregate(value~time+genus, data=long, FUN=sum)#
+#
+head(genus)#
+#
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)+#
+scale_x_log10()
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+ggplot(data=data, aes(x=cover, y=rich))+#
+geom_smooth(method="lm")+#
+geom_point()+#
+scale_y_log10()+scale_x_log10()
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+head(long)
+new <- cbind(time=data[,c("time","rep")], corals)
+long <- melt(new, id.var=c("time","rep"), variable.name="species")
+new <- cbind(time=data[,c("time","rep")], corals)#
+#
+long <- melt(new, id.var=c("time","rep"), variable.name="species")
+new <- cbind(time=data[,c("time","rep")], corals)#
+#
+long <- melt(new, id.var=list(c("time","rep")), variable.name="species")
+new <- cbind(time=data[,c("time","rep")], corals)#
+#
+long <- melt(new, id.var=c("time","rep"), variable.name="species")
+new <- cbind(time=data$time, rep=data$rep, corals)#
+#
+long <- melt(new, id.var=c("time","rep"), variable.name="species")
+unique(long$species)#
+#
+long$genus <- sub(" .*", "", long$species)
+head(long)
+genus <- aggregate(value~time+genus, data=long, FUN=sum)
+head(genus)#
+#
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+genus <- aggregate(value~time+genus+rep, data=long, FUN=sum)#
+#
+head(genus)
+ggplot(genus, aes(x=value, y=reorder(genus, value), fill=time))+#
+geom_bar(stat="identity")+#
+facet_wrap(~time)
+wide <- acast(genus, time~genus)
+wide <- dcast(genus, time+rep~genus)
+library("vegan")#
+#
+mds<-metaMDS(corals, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+stressplot(mds)
+mdsdat <- subset(wide, select=-c(time, rep))#
+#
+mds<-metaMDS(mdsdat, k=2, distance="bray", autotransform=FALSE, trymax=100)#
+stressplot(mds)
+points<-cbind(data.frame(scores(mds)), data)#
+vectors<-data.frame(mds$species)
+library("ggrepel")#
+#
+ggplot()+#
+scale_colour_distiller(palette="Spectral")+#
+#geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+#geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+#geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+#geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+points<-cbind(data.frame(scores(mds)), data)#
+vectors<-data.frame(mds$species)
+library("ggrepel")#
+#
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+#geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+#geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+facet_wrap(~time)
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=cover, size=cover))+#
+theme_bw()
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=rich, size=cover))+#
+theme_bw()
+mds<-metaMDS(sqrt(mdsdat), k=2, distance="bray", autotransform=FALSE, trymax=100)#
+#stressplot(mds)#
+#
+points<-cbind(data.frame(scores(mds)), data)#
+vectors<-data.frame(mds$species)#
+#
+library("ggrepel")#
+#
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=rich, size=cover))+#
+theme_bw()
+ggplot(data=points)+#
+scale_colour_distiller(palette="Spectral")+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=time, size=cover))+#
+theme_bw()
+ggplot(data=points)+#
+geom_segment(data=vectors, aes(x=0, xend=MDS1, y=0, yend=MDS2))+#
+geom_text_repel(data=vectors, aes(MDS1*1.1, MDS2*1.1, label=rownames(vectors)), size=1.5)+#
+geom_point(data=points, aes(NMDS1, NMDS2, col=time, size=cover))+#
+theme_bw()
