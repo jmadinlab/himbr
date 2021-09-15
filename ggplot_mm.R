@@ -49,6 +49,8 @@ data <- tikus$x
 
 # colour schemes - https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
 
+# bbc theme - https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535
+
 # other colour schemes - https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3
 
 # library("RColorBrewer")
